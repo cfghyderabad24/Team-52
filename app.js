@@ -62,7 +62,7 @@ app.get("/home/city/:cityName",async (req,res,next)=> {
         }
      }
      console.log(result);
-     res.render("searchBarLocation",{result});
+     res.render("city.ejs",{result});
 }) 
 
 app.get("/home/interest/:interestName",async (req,res,next) => {
@@ -76,11 +76,28 @@ app.get("/home/interest/:interestName",async (req,res,next) => {
         }
     }
     console.log(result);
-  res.render("searchBarLocation",{result});
-
 })
 
+app.get("/home/csrValue", async (req, res, next) => {
+    try {
+        let allDonors = await Donor.find({});
 
+        for (let i = 0; i < allDonors.length; i++) {
+            for (let j = 0; j < allDonors.length - 1; j++) {
+                if (allDonors[j].annualCsrSpend.total < allDonors[j + 1].annualCsrSpend.total) {
+                    let temp = allDonors[j];
+                    allDonors[j] = allDonors[j + 1];
+                    allDonors[j + 1] = temp;
+                }
+            }
+        }
+
+        console.log(allDonors);
+        res.render("home", { allDonors });
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 
