@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
+const Donor = require("./models/donor");
+mongoose.connect('mongodb://127.0.0.1:27017/jaldhara')
 .then(() => {
     console.log("Connection Successful!!")
 })
@@ -33,10 +34,41 @@ passport.deserializeUser(User.deserializeUser());
 
 app.get("/home",(req,res) => {
     if(req.isAuthenticated())
-    res.send("Welcome to home page");
+    {
+        let result = []
+        res.render("home",{result})
+    }
     else
     throw new Error("You are not logged in..")
 })
+
+app.get("/home/city/:cityName",async (req,res,next)=> {
+     const {city,cityName} = req.params;
+     console.log(cityName);
+     let result = []
+
+     const allDonors = await Donor.find({});
+     for(let donor of allDonors)
+     {
+        let donorCities = donor.geographiesOfInterest;
+        for(let donorCity of donorCities)
+        {
+            console.log(cityName,donorCity,cityName == donorCity);
+            if(cityName == donorCity)
+            {
+                result.push(donor);
+            }
+            
+        }
+     }
+     console.log(result);
+     res.render("home",{result});
+}) 
+
+
+
+
+
 
 
 
@@ -46,7 +78,7 @@ app.get("/login",(req,res) => {
 })
 
 app.post("/login",passport.authenticate("local",{failureFlash:true,failureRedirect:"/home"}),(req,res) => {
-    res.send("Welcome to Main page");
+    res.redirect("/home")
 })
 
 app.get("/register",(req,res) => {
