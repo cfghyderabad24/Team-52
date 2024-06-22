@@ -3,33 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> - Details</title>
+  <title>Company Details</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .card-subtitle {
+      font-size: 1.1rem;
+    }
+    .card-text {
+      font-size: 1rem;
+    }
+    .card {
+      margin-bottom: 30px;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .btn-secondary {
+      background-color: #6c757d;
+      border-color: #6c757d;
+    }
+    .container {
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="card">
-        <div class="card-body">
-        <h5 class="card-title"> </h5>
-        <h6 class="card-subtitle mb-2 text-muted">CSR Policy: </h6>
-        <p class="card-text">
-<<<<<<< HEAD
-          <strong>Annual CSR Spend:</strong> ₹<%= company.annualCsrSpend.total.toLocaleString() %> <br>
-          <strong>Drinking Water Spend:</strong> ₹<%= company.annualCsrSpend.drinkingWater.toLocaleString() %> <br>
-          <strong>Method of Execution:</strong> <%= company.methodOfExecution %> <br>
-          <strong>Unspent CSR:</strong> ₹<%= company.unspentCsr.toLocaleString() %> <br>
-          <strong>Geographies of Interest:</strong> <%= company
-          .geographiesOfInterest.join(', ') %>
-=======
-          <strong>Annual CSR Spend:</strong> ₹ <br>
-          <strong>Drinking Water Spend:</strong> ₹ <br>
-          <strong>Method of Execution:</strong>  <br>
-          <strong>Unspent CSR:</strong> ₹  <br>
-          <strong>Geographies of Interest:</strong> 
->>>>>>> 2d285903817757f80d3e95e23da90255557ddda2
-        </p>
-        <a href="/companies" class="btn btn-secondary">Back to List</a>
-      </div>
+  <div class="container">
+    <div class="row">
+      <% companies.forEach(function(company) { %>
+        <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= company.companyName %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">CSR Policy: <%= company.csrPolicy.interest %></h6>
+              <p class="card-text">
+                <strong>Annual CSR Spend:</strong> ₹<%= company.annualCsrSpend.total.toLocaleString() %> <br>
+                <strong>Drinking Water Spend:</strong> ₹<%= company.annualCsrSpend.drinkingWater.toLocaleString() %> <br>
+                <strong>Method of Execution:</strong> <%= company.methodOfExecution %> <br>
+                <strong>Unspent CSR:</strong> ₹<%= company.unspentCsr.toLocaleString() %> <br>
+                <strong>Geographies of Interest:</strong> <%= company.geographiesOfInterest.join(', ') %>
+              </p>
+              <a href="/companies" class="btn btn-secondary">Back to List</a>
+            </div>
+          </div>
+        </div>
+      <% }); %>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
