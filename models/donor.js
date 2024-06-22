@@ -14,35 +14,15 @@ const donorSchema = new mongoose.Schema({
             type: String,
             required: true
         },
-        address: {
-            type: String,
-            required: true
-        }
     },
     mandatedByLaw: {
         type: Boolean,
         default: false
     },
     csrPolicy: {
-        drinkingWater: {
-            type: Boolean,
-            default: false
-        },
-        environment: {
-            type: Boolean,
-            default: false
-        },
-        healthAndSanitation: {
-            type: Boolean,
-            default: false
-        },
-        wash: {
-            type: Boolean,
-            default: false
-        },
-        ruralUpliftment: {
-            type: Boolean,
-            default: false
+        interest: {
+            type: String,
+            required: true
         }
     },
     annualCsrSpend: {
@@ -69,7 +49,7 @@ const donorSchema = new mongoose.Schema({
         required: true
     },
     geographiesOfInterest: {
-        type: String,
+        type: [String],
         required: true
     }
 });
