@@ -121,6 +121,74 @@ app.get('/logout', (req, res, next) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/bot', (req, res) => {
+    res.render('bot');
+});
+
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const expressasynchandler=require('express-async-handler');
+const axios = require('axios');
+app.post('/generate-text',expressasynchandler( async (req, res) => {
+    const plantName = req.body;
+    let  x;
+    for(let name in plantName)
+        x=name
+    console.log(x)
+    try {
+        // Initialize the Gemini model
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY); // Replace with your actual API key
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        // Generate text based on the plantName entered
+        const prompt = `Tell about ${x}($give it in the form of html tags$)(we only need the required info dont give usless stuff $(dont type html in the top)$)`;
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = await response.text();
+
+        // Send the generated text back to the client
+        res.json({ generatedText: text });
+    } catch (error) {
+        console.error('Error occurred while generating text:', error);
+        res.status(500).json({ error: 'Error occurred while generating text' });
+    }
+}));
+
+
 app.use((err, req, res, next) => {
     res.send("Error");
 })
