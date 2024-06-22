@@ -84,10 +84,6 @@ app.get("/home/interest/:interestName", async (req, res, next) => {
 
 
 
-
-
-
-
 app.get("/login", (req, res) => {
     res.render("login.ejs");
 })
@@ -189,28 +185,6 @@ app.post('/sendemail', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.get('/bot', (req, res) => {
     res.render('bot');
 });
@@ -243,6 +217,25 @@ app.post('/generate-text',expressasynchandler( async (req, res) => {
     }
 }));
 
+app.get('/csr-companies', expressasynchandler(async (req, res) => {
+    try {
+        // Replace with the actual URL of the API providing CSR companies data
+        const genAI = new GoogleGenerativeAI(process.env.API_KEY); // Replace with your actual API key
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        // Generate text based on the plantName entered
+        const prompt = `give the csr companies which are interested to fund ngo's for "WASH","clean water" projects(give the respones in $json$)`;
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = await response.text();
+
+        res.json({ generatedText: text });
+
+    } catch (error) {
+        console.error('Error occurred while fetching CSR companies data:', error);
+        res.status(500).json({ error: 'Error occurred while fetching CSR companies data' });
+    }
+}));
 
 app.use((err, req, res, next) => {
     res.send("Error");
