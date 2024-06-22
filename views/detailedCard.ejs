@@ -17,7 +17,8 @@
           <strong>Drinking Water Spend:</strong> ₹<%= company.annualCsrSpend.drinkingWater.toLocaleString() %> <br>
           <strong>Method of Execution:</strong> <%= company.methodOfExecution %> <br>
           <strong>Unspent CSR:</strong> ₹<%= company.unspentCsr.toLocaleString() %> <br>
-          <strong>Geographies of Interest:</strong> <%= company.geographiesOfInterest.join(', ') %>
+          <strong>Geographies of Interest:</strong> <%= company
+          .geographiesOfInterest.join(', ') %>
         </p>
         <a href="/companies" class="btn btn-secondary">Back to List</a>
       </div>
