@@ -3,22 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= company.companyName %> - Details</title>
+  <title> - Details</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container mt-5">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= company.companyName %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">CSR Policy: <%= company.csrPolicy.interest %></h6>
+        <div class="card-body">
+        <h5 class="card-title"> </h5>
+        <h6 class="card-subtitle mb-2 text-muted">CSR Policy: </h6>
         <p class="card-text">
+<<<<<<< HEAD
           <strong>Annual CSR Spend:</strong> ₹<%= company.annualCsrSpend.total.toLocaleString() %> <br>
           <strong>Drinking Water Spend:</strong> ₹<%= company.annualCsrSpend.drinkingWater.toLocaleString() %> <br>
           <strong>Method of Execution:</strong> <%= company.methodOfExecution %> <br>
           <strong>Unspent CSR:</strong> ₹<%= company.unspentCsr.toLocaleString() %> <br>
           <strong>Geographies of Interest:</strong> <%= company
           .geographiesOfInterest.join(', ') %>
+=======
+          <strong>Annual CSR Spend:</strong> ₹ <br>
+          <strong>Drinking Water Spend:</strong> ₹ <br>
+          <strong>Method of Execution:</strong>  <br>
+          <strong>Unspent CSR:</strong> ₹  <br>
+          <strong>Geographies of Interest:</strong> 
+>>>>>>> 2d285903817757f80d3e95e23da90255557ddda2
         </p>
         <a href="/companies" class="btn btn-secondary">Back to List</a>
       </div>
