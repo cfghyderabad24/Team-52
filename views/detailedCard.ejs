@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= company.companyName %> - Details</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= company.companyName %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">CSR Policy: <%= company.csrPolicy.interest %></h6>
+        <p class="card-text">
+          <strong>Annual CSR Spend:</strong> ₹<%= company.annualCsrSpend.total.toLocaleString() %> <br>
+          <strong>Drinking Water Spend:</strong> ₹<%= company.annualCsrSpend.drinkingWater.toLocaleString() %> <br>
+          <strong>Method of Execution:</strong> <%= company.methodOfExecution %> <br>
+          <strong>Unspent CSR:</strong> ₹<%= company.unspentCsr.toLocaleString() %> <br>
+          <strong>Geographies of Interest:</strong> <%= company.geographiesOfInterest.join(', ') %>
+        </p>
+        <a href="/companies" class="btn btn-secondary">Back to List</a>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
