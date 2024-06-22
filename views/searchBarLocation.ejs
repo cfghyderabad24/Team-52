@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaldhaara</title>
+</head>
+<body>
+  
+    <% for(let donor of result) { %>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"> </h5>
+            <h2 class="card-subtitle mb-2 text-muted">Company Name:<%=donor.companyName%> </h2>
+            <p class="card-text">
+              <strong>Annual CSR Spend:</strong> ₹ <%=donor.annualCsrSpend.total %> <br>
+              <strong>Drinking Water Spend:</strong> ₹ <%=donor.annualCsrSpend.drinkingWater %> <br>
+              <strong>Method of Execution:</strong> <%=donor.methodOfExecution %> <br>
+              <strong>Unspent CSR:</strong> ₹ <%=donor.unspentCsr %>  <br>
+              <strong>Geographies of Interest: 
+                <% for(let city of donor.geographiesOfInterest) {%>
+                  <ul>
+                    <li ><%=city %></li>
+                  </ul>
+                  <% }%>
+              </strong>  
+            </p>
+            <a href="/home/<%=donor.companyName%>" class="btn btn-secondary">Info</a>
+          </div>
+        </div>
+      </div>
+<% } %>
+</body>
+</html>
+
