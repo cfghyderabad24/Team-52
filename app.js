@@ -62,7 +62,7 @@ app.get("/home/city/:cityName",async (req,res,next)=> {
         }
      }
      console.log(result);
-     res.render("home",{result});
+     res.render("city.ejs",{result});
 }) 
 
 app.get("/home/interest/:interestName",async (req,res,next) => {
@@ -149,14 +149,3 @@ app.use((err,req,res,next) => {
 app.listen(3000,() => {
     console.log("Listening from port 3000");
 })
-
-
-
-
-
-
-
-
-
-
-
