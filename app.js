@@ -65,7 +65,18 @@ app.get("/home/city/:cityName",async (req,res,next)=> {
      res.render("home",{result});
 }) 
 
+app.get("/home/interest/:interestName",async (req,res,next) => {
+    const interestName = req.params.interestName;
+    let result = []
+    const allDonors = await Donor.find({});
 
+    for(let donor of allDonors) {
+        if(donor.csrPolicy.interest == interestName) {
+            result.push(donor);
+        }
+    }
+    console.log(result);
+})
 
 
 
