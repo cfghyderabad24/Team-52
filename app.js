@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Donor = require("./models/donor");
+const Individual = require("./models/individuals");
 mongoose.connect('mongodb://127.0.0.1:27017/jaldhara')
 .then(() => {
     console.log("Connection Successful!!")
