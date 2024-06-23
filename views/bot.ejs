@@ -3,7 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Info</title>
+    <title>Jaldhaara</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #22212cd6; /* Light text color for contrast */
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+        .generated-text { 
+            background-color: rgba(6, 6, 6, 0.8); 
+            border-radius: 20px; 
+            padding: 20px; 
+            padding-left: 40px; 
+            width: 60vw; 
+            max-width: 800px; 
+            backdrop-filter: blur(30px); 
+            position: fixed; 
+            top: 62vh; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); 
+            color: rgb(219, 217, 217); 
+            overflow-y: auto; 
+            max-height: 60vh; 
+            z-index: 1;
+        } 
+        .generated-text p { 
+            margin-bottom: 10px; 
+            line-height: 1.6; 
+        } 
+        .generated-text h2, h1 { 
+            margin-bottom: 15px; 
+            color: aliceblue; 
+        } 
+        .generated-text a { 
+            color: rgb(78, 119, 78); 
+        } 
+        .generated-text::-webkit-scrollbar { 
+            width: 8px; 
+            border-radius: 10px; 
+        } 
+        .generated-text::-webkit-scrollbar-thumb { 
+            background-color: rgba(171, 171, 171, 0.5); 
+            border-radius: 4px; 
+        } 
+        .generated-text::-webkit-scrollbar-track { 
+            background-color: rgba(0, 0, 0, 0.1); 
+        } 
+        @media only screen and (max-width: 600px) { 
+            header { 
+                padding: 10px 0; 
+            } 
+            #navButton { 
+                font-size: 20px; 
+            } 
+            nav ul li a { 
+                font-size: 14px; 
+            } 
+            .container { 
+                width: 80%; 
+                height: 50%; 
+                margin-top: 50%; 
+            } 
+            .search-container { 
+                margin-top: 100px; 
+                min-width: 300px; 
+                top: 13vh; 
+            } 
+            .generated-text { 
+                top: 60vh; 
+                min-width: 400px; 
+                min-height: 600px; 
+            } 
+        } 
+        .search-container { 
+            display: flex; 
+            align-items: center; 
+            background-color: rgba(6, 6, 6, 0.571); 
+            border-radius: 20px; 
+            padding: 5px 10px; 
+            width: 30vw; 
+            backdrop-filter: blur(30px); 
+            position: fixed; 
+            top: 25vh; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); 
+            z-index: 1;
+        } 
+        .search-container input[type="text"] { 
+            border: none; 
+            background: none; 
+            outline: none; 
+            color: rgb(219, 217, 217); 
+            flex: 1; 
+            padding: 8px; 
+        } 
+        .search-container input[type="text"]::placeholder { 
+            color: rgb(187, 187, 187); 
+        } 
+        .fa,.fab, .fad, .fal, .far, .fas {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+           
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            
+        }
+        .search-container button { 
+            background: none; 
+            border: none; 
+            background-color: rgb(113, 110, 106);
+            color: rgb(171, 171, 171); 
+            cursor: pointer; 
+            font-size: 16px; 
+            padding-top: 6px; 
+            padding-right: 5px; 
+            padding-bottom: 8px; 
+            margin: auto;
+            border-radius: 10px;
+            align-items: center;
+        } 
+        .SearchIcon { 
+            width: 30px; 
+            align-items: center;
+            vertical-align: center; 
+        }
+        .error {
+            color: red;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            z-index: 1;
+        }
+
+    </style>
 </head>
 <body>
     <div class="main-body">
@@ -12,10 +157,9 @@
                 type="text" 
                 id="searchInput" 
                 name="type"
-                placeholder="Search..." 
+                placeholder="Enter Here" 
             />
-            <button type="button" id="searchButton">
-                <img class="SearchIcon" src="" alt="Search" /> <!-- Adjust the path to your image file -->
+            <button type="button" id="searchButton">Search
             </button>
         </div>
         <div id="generatedText" class="generated-text"></div>
