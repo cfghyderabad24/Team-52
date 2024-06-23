@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Info</title>
+</head>
+<body>
+    <div class="main-body">
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                name="type"
+                placeholder="Search..." 
+            />
+            <button type="button" id="searchButton">
+                <img class="SearchIcon" src="" alt="Search" /> <!-- Adjust the path to your image file -->
+            </button>
+        </div>
+        <div id="generatedText" class="generated-text"></div>
+        <p id="error" class="error"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById('searchButton').addEventListener('click', async () => {
+            const plantName = document.getElementById('searchInput').value;
+            const generatedTextDiv = document.getElementById('generatedText');
+            const errorDiv = document.getElementById('error');
+           
+
+            try {
+               
+                const response = await axios.post(' http://localhost:3000/generate-text', plantName);
+                const generatedText = response.data.generatedText;
+                generatedTextDiv.innerHTML = generatedText;
+                errorDiv.textContent = '';
+            } catch (error) {
+                errorDiv.textContent = 'Error occurred while generating text';
+                generatedTextDiv.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>
